@@ -2,7 +2,7 @@
 
 ## Purpose
 
-This project is being built as a base for my [*Reverse Polish Notation*](https://en.wikipedia.org/wiki/Reverse_Polish_notation) (RPN) calculator. 
+This project is being built as a base for my [*Reverse Polish Notation*](https://en.wikipedia.org/wiki/Reverse_Polish_notation) (RPN) calculator. So, far only initial tasks have been completed.
 
 This will eventually support the following post-fix operators:
 
