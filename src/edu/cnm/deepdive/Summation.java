@@ -20,66 +20,69 @@ public class Summation {
     for (int i = 0; i < args.length; i++) {
       String arg = args[i];
       arg = arg.trim().toLowerCase();
-/*      if (arg.equals("+")) {
-        val1 = stack.pop();
-        val2 = stack.pop();
-        stack.push(val1 + val2);
-      } else if (arg.equals("-")) {
-        val1 = stack.pop();
-        val2 = stack.pop();
-        stack.push(val2 - val1);
-      } else if (arg.equals("*")) {
-        val1 = stack.pop();
-        val2 = stack.pop();
-        stack.push(val1 * val2);
-      } else if (arg.equals("/")) {
-        val1 = stack.pop();
-        val2 = stack.pop();
-        stack.push(val2 / val1);
-      } else {
-        double val = Double.parseDouble(arg);
-        stack.push(val);
-      }*/
-      double val1;
-      double val2;
       switch (arg) {
         case "add":
         case "+":
-          val1 = stack.pop();
-          val2 = stack.pop();
-          stack.push(val1 + val2);
+          add(stack);
           break;
         case "sub":
         case "-":
-          val1 = stack.pop();
-          val2 = stack.pop();
-          stack.push(val2 - val1);
+          subtract(stack);
           break;
         case "mul":
         case "*":
-          val1 = stack.pop();
-          val2 = stack.pop();
-          stack.push(val1 * val2);
+          multiply(stack);
           break;
         case "div":
         case "/":
-          val1 = stack.pop();
-          val2 = stack.pop();
-          stack.push(val2 / val1);
+          divide(stack);
           break;
         case "exp":
         case "^":
-          val1 = stack.pop();
-          val2 = stack.pop();
-          stack.push(Math.pow(val2, val1));
+          power(stack);
           break;
         default:
-          double val = Double.parseDouble(arg);
-          stack.push(val);
+          stack.push(Double.valueOf(arg));
       }
 
     }
     System.out.printf("Result = %,.2f", stack.pop());
   }
 
+  /**
+   * @param stack
+   */
+  private static void add(Stack<Double> stack) {
+    double[] values = pop(stack, 2);
+    stack.push(values[0] + values[1]);
+  }
+  
+  private static void subtract(Stack<Double> stack) {
+    double[] values = pop(stack, 2);
+    stack.push(values[1] - values[0]);
+  }
+  
+  private static void multiply(Stack<Double> stack) {
+    double[] values = pop(stack, 2);
+    stack.push(values[0] * values[1]);
+  }
+  
+  private static void divide(Stack<Double> stack) {
+    double[] values = pop(stack, 2);
+    stack.push(values[1] / values[0]);
+  }
+  
+  private static void power(Stack<Double> stack) {
+    double[] values = pop(stack, 2);
+    stack.push(Math.pow(values[1], values[0]));
+  }
+  
+  private static double[]  pop(Stack<Double> stack, int numItems) {
+    double[] values = new double[numItems];
+    for (int i = 0; i < numItems; i++) {
+      values[i] = stack.pop();
+    }
+    return values;
+  }
+  
 }
